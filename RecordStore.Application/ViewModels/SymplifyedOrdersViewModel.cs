@@ -1,8 +1,8 @@
 ﻿namespace RecordStore.Application.ViewModels
 {
-    public class SymplifyedRecordsViewModel
+    public class SymplifyedOrdersViewModel
     {
-        public SymplifyedRecordsViewModel(int orderId, decimal totalCost, DateTime date)
+        public SymplifyedOrdersViewModel(int orderId, decimal totalCost, DateTime date)
         {
             OrderId = orderId;
             TotalCost = totalCost;
