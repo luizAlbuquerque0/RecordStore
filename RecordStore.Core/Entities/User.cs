@@ -18,5 +18,6 @@ namespace RecordStore.Core.Entities
         public string FullName { get; private set; }
         public string Email { get; private set; }
         public string Password { get; private set; }
+        public List<Order> Orders { get; private set; }
     }
 }

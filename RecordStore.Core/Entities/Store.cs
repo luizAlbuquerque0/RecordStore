@@ -7,6 +7,7 @@
         public string Password { get; private set; }
         public string Phone { get; private set; }
         public List<Record> Records { get; private set; }
+        public List<Order> Orders { get; private set; }
 
     }
 }
