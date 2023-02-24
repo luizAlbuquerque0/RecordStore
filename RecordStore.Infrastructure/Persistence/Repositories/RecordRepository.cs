@@ -25,7 +25,7 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
 
         public async Task<Record> GetRecordByIdAsync(int id)
         {
-            return await _dbContext.Records.SingleOrDefaultAsync(r => r.Id == id);
+            return await _dbContext.Records.Include(r=>r.Store.FullName).SingleOrDefaultAsync(r => r.Id == id);
         }
 
         public async Task UpdateRecordStockAsync(int id, int amount)
