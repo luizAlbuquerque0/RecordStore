@@ -19,7 +19,7 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
 
         public async Task<User> GetByIdAsync(int id)
         {
-            var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Id == id);
+            var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Id == id );
             return user;
         }
 

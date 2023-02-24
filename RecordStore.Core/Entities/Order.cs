@@ -17,7 +17,7 @@
         public List<Record> Records { get; private set; }
         public decimal TotalPrice { get; private set; }
         public User User { get; private set; }
-        public Store Store { get; private set; }
+        public User Store { get; private set; }
 
     }
 }

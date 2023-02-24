@@ -24,7 +24,7 @@ namespace RecordStore.Core.Entities
         public decimal Price { get; private set; }
         public int StoreId { get; private set; }
         public int Stock { get; private set; }
-        public Store Store { get; private set; }
+        public User Store { get; private set; }
 
         public void UpdateStock(int amount)
         {
