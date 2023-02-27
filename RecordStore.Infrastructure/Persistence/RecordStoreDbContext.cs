@@ -10,7 +10,7 @@ namespace RecordStore.Infrastructure.Persistence
         {
 
         }
-        public DbSet<User> Users { get; private set; }
+        public DbSet<User> User { get; private set; }
         public DbSet<Record> Records { get; private set; }
         public DbSet<Order> Orders { get; private set; }
         public DbSet<Cart> Carts { get; private set; }

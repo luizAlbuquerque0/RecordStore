@@ -13,19 +13,19 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
         }
         public async Task CreateUserAsync(User user)
         {
-            await _dbContext.Users.AddAsync(user);
+            await _dbContext.User.AddAsync(user);
             await _dbContext.SaveChangesAsync();
         }
 
         public async Task<User> GetByIdAsync(int id)
         {
-            var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Id == id );
+            var user = await _dbContext.User.SingleOrDefaultAsync(u => u.Id == id );
             return user;
         }
 
         public async Task<User> GetUserByEmailAndPasswordAsync(string email, string password)
         {
-            var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email && u.Password == password);
+            var user = await _dbContext.User.SingleOrDefaultAsync(u => u.Email == email && u.Password == password);
             return user;
         }
     }
