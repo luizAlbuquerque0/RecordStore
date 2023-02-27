@@ -11,9 +11,10 @@ namespace RecordStore.Infrastructure.Persistence
 
         }
         public DbSet<User> Users { get; private set; }
-        public DbSet<Store> Stores { get; private set; }
         public DbSet<Record> Records { get; private set; }
-        public DbSet<Order> Order { get; private set; }
+        public DbSet<Order> Orders { get; private set; }
+        public DbSet<Cart> Carts { get; private set; }
+        public DbSet<CartItem> CarttItens { get; private set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
