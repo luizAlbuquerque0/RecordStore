@@ -13,7 +13,7 @@ namespace RecordStore.Application.Commands.CreateOrder
         }
         public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var order = new Order(request.UserId, request.StoreId, request.RecordsId, request.TotalPrice);
+            var order = new Order(request.UserId, request.StoreId, request.CardId, request.TotalPrice);
             await _orderRepository.CreateOrderAsync(order);
             return Unit.Value;
         }
