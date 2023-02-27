@@ -13,7 +13,7 @@ namespace RecordStore.Application.Commands.AddRecord
         }
         public async Task<Unit> Handle(AddRecordCommand request, CancellationToken cancellationToken)
         {
-            var record = new Record(request.Name, request.Description, request.Gender, request.Price, request.StoreId);
+            var record = new Record(request.Name, request.Description, request.Gender, request.Price, request.StoreId, request.Stock);
             await _recordRepository.AddRecordAsync(record);
             return Unit.Value;
         }
