@@ -4,7 +4,7 @@ namespace RecordStore.Core.Repositories
 {
     public interface ICartRepository
     {
-        Task CreateCartAsync(int userId);
+        Task CreateCartAsync(Cart cart);
         Task<Cart> GetCartAsync(int cartId);
     }
 }
