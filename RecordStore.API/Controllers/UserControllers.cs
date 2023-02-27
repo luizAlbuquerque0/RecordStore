@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RecordStore.Application.Commands.CreateStore;
 using RecordStore.Application.Commands.CreateUser;
 using RecordStore.Application.Queries.GetUserQuery;
 
@@ -31,6 +32,16 @@ namespace RecordStore.API.Controllers
         {
            
                 var id = await _mediator.Send(command);
+
+
+            return CreatedAtAction(nameof(GetById), new { id = id }, command);
+        }
+
+        [HttpPost("/store")]
+        public async Task<IActionResult> CreateStore([FromBody] CreateStoreCommand command)
+        {
+
+            var id = await _mediator.Send(command);
 
 
             return CreatedAtAction(nameof(GetById), new { id = id }, command);
