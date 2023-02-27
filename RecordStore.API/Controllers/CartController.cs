@@ -4,7 +4,7 @@ using RecordStore.Application.Queries.GetCart;
 
 namespace RecordStore.API.Controllers
 {
-    [Route("apit/cart")]
+    [Route("api/cart")]
     public class CartController : ControllerBase
     {
         private readonly IMediator _mediator;

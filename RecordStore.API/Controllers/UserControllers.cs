@@ -37,7 +37,7 @@ namespace RecordStore.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = id }, command);
         }
 
-        [HttpPost("/store")]
+        [HttpPost("store")]
         public async Task<IActionResult> CreateStore([FromBody] CreateStoreCommand command)
         {
 
