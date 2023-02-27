@@ -22,6 +22,12 @@ namespace RecordStore.Infrastructure.Configurations
                 .WithMany(s => s.Orders)
                 .HasForeignKey(o => o.StoreId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .HasOne(o => o.Cart)
+                .WithOne(c => c.Order)
+                .HasForeignKey<Order>(o => o.Cart.Id);
+
         }
     }
 }

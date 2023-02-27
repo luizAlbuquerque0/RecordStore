@@ -11,5 +11,6 @@
         public decimal TotalCost { get; private set; }
         public List<CartItem> CartItem { get; private set; }
         public User User { get; private set; }
+        public Order Order { get; private set; }
     }
 }
