@@ -26,7 +26,7 @@ namespace RecordStore.Infrastructure.Configurations
             builder
                 .HasOne(o => o.Cart)
                 .WithOne(c => c.Order)
-                .HasForeignKey<Order>(o => o.Cart.Id);
+                .HasForeignKey<Order>(o => o.CartId);
 
         }
     }

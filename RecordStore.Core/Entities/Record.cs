@@ -8,14 +8,13 @@ namespace RecordStore.Core.Entities
 {
     public class Record : BaseEntity
     {
-        public Record(string name, string description, string gender, decimal price, int storeId, int initialStock)
+        public Record(string name, string description, string gender, decimal price, int storeId)
         {
             Name = name;
             Description = description;
             Gender = gender;
             Price = price;
             StoreId = storeId;
-            Stock = initialStock;
         }
 
         public string Name { get; private set; }
@@ -25,10 +24,5 @@ namespace RecordStore.Core.Entities
         public int StoreId { get; private set; }
         public int Stock { get; private set; }
         public User Store { get; private set; }
-
-        public void UpdateStock(int amount)
-        {
-            Stock += amount;
-        }
     }
 }
