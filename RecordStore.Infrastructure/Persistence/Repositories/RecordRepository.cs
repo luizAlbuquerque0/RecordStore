@@ -31,6 +31,7 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
         public async Task UpdateRecordStockAsync(int id, int amount)
         {
             var record = await _dbContext.Records.SingleOrDefaultAsync(r => r.Id == id);
+            record.UpdateStock(amount);
             await _dbContext.SaveChangesAsync();
         }
     }
