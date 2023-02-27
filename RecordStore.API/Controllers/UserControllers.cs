@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.CreateUser;
+using RecordStore.Application.Queries.GetUserQuery;
 
 namespace RecordStore.API.Controllers
 {
@@ -11,6 +12,18 @@ namespace RecordStore.API.Controllers
         public UserControllers(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var query = new GetUserQuery(id);
+
+            var user = await _mediator.Send(query);
+            if (user == null) return NotFound();
+
+            return Ok(new { user = user});
+         
         }
 
         [HttpPost]
