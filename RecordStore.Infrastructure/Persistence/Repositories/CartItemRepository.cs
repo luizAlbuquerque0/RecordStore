@@ -1,4 +1,5 @@
-﻿using RecordStore.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using RecordStore.Core.Entities;
 using RecordStore.Core.Repositories;
 
 namespace RecordStore.Infrastructure.Persistence.Repositories
@@ -15,6 +16,11 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
         {
             await _dbContext.CarttItens.AddAsync(cartItem);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<CartItem> GetCartItemByIdAsync(int id)
+        {
+            return await _dbContext.CarttItens.SingleOrDefaultAsync(ci => ci.Id == id);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.AddCartItem;
 using RecordStore.Application.Commands.CreateCart;
+using RecordStore.Application.Commands.GetCartItem;
 using RecordStore.Application.Queries.GetCart;
 
 namespace RecordStore.API.Controllers
@@ -32,11 +33,19 @@ namespace RecordStore.API.Controllers
             return CreatedAtAction(nameof(GetCart), new { id = id }, command);
         }
 
+        [HttpGet("item/{id}")]
+        public async Task<IActionResult> GetCartItem(int id)
+        {
+            var query = new GetCartItemByIdQuery(id);
+            var cartItem = await _mediator.Send(query);
+            return cartItem == null ? NotFound() : Ok(cartItem);
+        }
+
         [HttpPost("item")]
         public async Task<IActionResult> AddCartItem([FromBody] AddCartItemCommand command)
         {
             var id = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetCart), new { id = id }, command);
+            return CreatedAtAction(nameof(GetCartItem), new { id = id }, command);
         }
     }
 }
