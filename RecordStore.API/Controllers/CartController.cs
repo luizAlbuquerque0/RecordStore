@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RecordStore.Application.Commands.AddCartItem;
 using RecordStore.Application.Commands.CreateCart;
 using RecordStore.Application.Queries.GetCart;
 
@@ -28,6 +29,13 @@ namespace RecordStore.API.Controllers
             var command = new CreateCartCommand(userId);
             var id = await _mediator.Send(command);
 
+            return CreatedAtAction(nameof(GetCart), new { id = id }, command);
+        }
+
+        [HttpPost("item")]
+        public async Task<IActionResult> AddCartItem([FromBody] AddCartItemCommand command)
+        {
+            var id = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetCart), new { id = id }, command);
         }
     }
