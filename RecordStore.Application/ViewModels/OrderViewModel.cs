@@ -4,12 +4,11 @@ namespace RecordStore.Application.ViewModels
 {
     public class OrderViewModel
     {
-        public OrderViewModel(string userName, string storeName, decimal totalCost, List<Record> records, DateTime date)
+        public OrderViewModel(string userName, string storeName, decimal totalCost,  DateTime date)
         {
             UserName = userName;
             StoreName = storeName;
             TotalCost = totalCost;
-            Records = records;
             Date = date;
         }
 
