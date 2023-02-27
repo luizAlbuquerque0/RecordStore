@@ -13,22 +13,22 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
         }
         public async Task CreateOrderAsync(Order order)
         {
-            await _dbContext.Order.AddAsync(order);
+            await _dbContext.Orders.AddAsync(order);
         }
 
         public async Task<Order> GetOrderByIdAsync(int id)
         {
-            return await _dbContext.Order.Where(o => o.Id ==id).Include(o => o.User.FullName).Include(o => o.Store.Name).SingleOrDefaultAsync();
+            return await _dbContext.Orders.Where(o => o.Id ==id).Include(o => o.User.FullName).Include(o => o.Store.FullName).SingleOrDefaultAsync();
         }
 
         public async Task<List<Order>> GetStoreOrdersAsync(int storeId)
         {
-            return await _dbContext.Order.Where(o => o.StoreId == storeId).ToListAsync();
+            return await _dbContext.Orders.Where(o => o.StoreId == storeId).ToListAsync();
         }
 
         public async Task<List<Order>> GetUserOrdersAsync(int userId)
         {
-            return await _dbContext.Order.Where(o => o.UserId == userId).ToListAsync();
+            return await _dbContext.Orders.Where(o => o.UserId == userId).ToListAsync();
         }
     }
 }
