@@ -13,13 +13,13 @@ namespace RecordStore.Infrastructure.Configurations
 
             builder
                 .HasOne(o => o.User)
-                .WithMany(u => u.Orders)
+                .WithMany(u => u.UserOrders)
                 .HasForeignKey(o => o.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .HasOne(o => o.Store)
-                .WithMany(s => s.Orders)
+                .WithMany(s => s.StoreOrders)
                 .HasForeignKey(o => o.StoreId)
                 .OnDelete(DeleteBehavior.Restrict);
 

@@ -21,7 +21,8 @@ namespace RecordStore.Core.Entities
         public string Password { get; private set; }
         public string Phone { get; private set; }
         public string Role { get; private set; }
-        public List<Order> Orders { get; private set; }
+        public List<Order> UserOrders { get; private set; }
+        public List<Order> StoreOrders { get; private set; }
         public List<Record> Records { get; private set; }
 
         public void setRole(string role)
