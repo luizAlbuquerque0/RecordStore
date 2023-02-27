@@ -8,14 +8,13 @@ namespace RecordStore.Core.Entities
 {
     public class Record : BaseEntity
     {
-        public Record(string name, string description, string gender, decimal price, int storeId, int stock)
+        public Record(string name, string description, string gender, decimal price, int storeId)
         {
             Name = name;
             Description = description;
             Gender = gender;
             Price = price;
             StoreId = storeId;
-            Stock = stock;
         }
 
         public string Name { get; private set; }
