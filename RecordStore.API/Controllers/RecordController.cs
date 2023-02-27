@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.AddRecord;
+using RecordStore.Application.Commands.UpdateRecord;
 using RecordStore.Application.Queries.GetOrderById;
 
 namespace RecordStore.API.Controllers
@@ -28,6 +29,15 @@ namespace RecordStore.API.Controllers
             var id = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = id }, command);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateStock(int id, [FromBody] int amount)
+        {
+            var command = new UpdateRecordCommand(id, amount);
+            await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 }
