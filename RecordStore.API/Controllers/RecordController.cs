@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.AddRecord;
 using RecordStore.Application.Commands.UpdateRecord;
@@ -8,6 +9,7 @@ using RecordStore.Application.Queries.GetRecordById;
 namespace RecordStore.API.Controllers
 {
     [Route("api/records")]
+    [Authorize]
     public class RecordController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -17,6 +19,7 @@ namespace RecordStore.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetRecordByIdQuery(id);
@@ -25,6 +28,7 @@ namespace RecordStore.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles ="store")]
         public async Task<IActionResult> AddRecord([FromBody] AddRecordCommand command)
         {
             var id = await _mediator.Send(command);
@@ -33,6 +37,7 @@ namespace RecordStore.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "store")]
         public async Task<IActionResult> UpdateStock(int id, [FromBody] int amount)
         {
             var command = new UpdateRecordCommand(id, amount);

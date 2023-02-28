@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.AddCartItem;
 using RecordStore.Application.Commands.CreateCart;
@@ -9,6 +10,8 @@ using RecordStore.Application.Queries.GetCart;
 namespace RecordStore.API.Controllers
 {
     [Route("api/cart")]
+    [Authorize]
+    [Authorize(Roles = "store")]
     public class CartController : ControllerBase
     {
         private readonly IMediator _mediator;

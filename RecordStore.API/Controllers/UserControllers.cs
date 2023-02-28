@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.CreateStore;
 using RecordStore.Application.Commands.CreateUser;
@@ -8,6 +9,7 @@ using RecordStore.Application.Queries.GetUserQuery;
 namespace RecordStore.API.Controllers
 {
         [Route("api/users")]
+         [Authorize]
     public class UserControllers : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -29,6 +31,7 @@ namespace RecordStore.API.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command)
         {
            
@@ -39,6 +42,7 @@ namespace RecordStore.API.Controllers
         }
 
         [HttpPut]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
         {
             try
@@ -54,6 +58,7 @@ namespace RecordStore.API.Controllers
         }
 
         [HttpPost("store")]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateStore([FromBody] CreateStoreCommand command)
         {
 
