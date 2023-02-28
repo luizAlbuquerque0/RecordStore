@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.CreateStore;
 using RecordStore.Application.Commands.CreateUser;
+using RecordStore.Application.Commands.LoginUser;
 using RecordStore.Application.Queries.GetUserQuery;
 
 namespace RecordStore.API.Controllers
@@ -35,6 +36,21 @@ namespace RecordStore.API.Controllers
 
 
             return CreatedAtAction(nameof(GetById), new { id = id }, command);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
+        {
+            try
+            {
+                var loginUserViewModel = await _mediator.Send(command);
+                return Ok(loginUserViewModel);
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
         }
 
         [HttpPost("store")]

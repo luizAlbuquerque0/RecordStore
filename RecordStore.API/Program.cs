@@ -5,6 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RecordStore.Application.Commands.CreateUser;
 using RecordStore.Core.Repositories;
+using RecordStore.Core.Services;
+using RecordStore.Infrastructure.AuthService;
 using RecordStore.Infrastructure.Persistence;
 using RecordStore.Infrastructure.Persistence.Repositories;
 using System.Text;
@@ -23,6 +25,8 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IRecordRepository, RecordRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
