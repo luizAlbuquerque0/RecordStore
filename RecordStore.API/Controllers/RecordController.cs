@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.AddRecord;
 using RecordStore.Application.Commands.UpdateRecord;
 using RecordStore.Application.Queries.GetOrderById;
+using RecordStore.Application.Queries.GetRecordById;
 
 namespace RecordStore.API.Controllers
 {
@@ -18,8 +19,8 @@ namespace RecordStore.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var query = new GetOrderByIdQuery(id);
-            var record = _mediator.Send(query);
+            var query = new GetRecordByIdQuery(id);
+            var record = await _mediator.Send(query);
             return record == null ? NotFound() : Ok(record);   
         }
 
