@@ -14,6 +14,7 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
         public async Task AddRecordAsync(Record record)
         {
             await _dbContext.Records.AddRangeAsync(record);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteRecordByIdAsync(int id)

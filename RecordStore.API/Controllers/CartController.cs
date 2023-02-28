@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.AddCartItem;
 using RecordStore.Application.Commands.CreateCart;
 using RecordStore.Application.Commands.GetCartItem;
+using RecordStore.Application.Commands.RemoveCartItem;
 using RecordStore.Application.Queries.GetCart;
 
 namespace RecordStore.API.Controllers
@@ -24,7 +25,7 @@ namespace RecordStore.API.Controllers
 
             return cart == null ? NotFound() : Ok(cart);
         }
-        [HttpPost("{id}")]
+        [HttpPost("{userId}")]
         public async Task<IActionResult> CreateCart(int userId)
         {
             var command = new CreateCartCommand(userId);
@@ -46,6 +47,22 @@ namespace RecordStore.API.Controllers
         {
             var id = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetCartItem), new { id = id }, command);
+        }
+
+        [HttpDelete("item/{id}")]
+        public async Task<IActionResult> RemoveCartItemById(int id)
+        {
+            try
+            {
+                var commmand = new RemoveCartItemCommand(id);
+                await _mediator.Send(commmand);
+                return NoContent();
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
         }
     }
 }
