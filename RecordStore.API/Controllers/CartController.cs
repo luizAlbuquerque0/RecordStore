@@ -11,7 +11,7 @@ namespace RecordStore.API.Controllers
 {
     [Route("api/cart")]
     [Authorize]
-    [Authorize(Roles = "store")]
+    [Authorize(Roles = "user")]
     public class CartController : ControllerBase
     {
         private readonly IMediator _mediator;

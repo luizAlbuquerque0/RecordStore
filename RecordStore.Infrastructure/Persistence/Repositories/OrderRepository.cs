@@ -21,14 +21,9 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
             return await _dbContext.Orders.Where(o => o.Id ==id).Include(o => o.User.FullName).Include(o => o.Store.FullName).SingleOrDefaultAsync();
         }
 
-        public async Task<List<Order>> GetStoreOrdersAsync(int storeId)
+        public async Task<List<Order>> GetUserOrdersAsync(int id)
         {
-            return await _dbContext.Orders.Where(o => o.StoreId == storeId).ToListAsync();
-        }
-
-        public async Task<List<Order>> GetUserOrdersAsync(int userId)
-        {
-            return await _dbContext.Orders.Where(o => o.UserId == userId).ToListAsync();
+            return await _dbContext.Orders.Where(o => o.UserId == id || o.StoreId == id).ToListAsync();
         }
     }
 }
