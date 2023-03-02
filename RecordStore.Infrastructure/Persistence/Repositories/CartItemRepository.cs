@@ -15,12 +15,13 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
 
         public async Task CreateCartItemAsync(CartItem cartItem)
         {
-            var record = await _dbContext.Records.FindAsync(cartItem.RecordId);
-
-            if(record == null)
-            {
+            var record = await _dbContext.Records.FindAsync(cartItem.RecordId) ?? 
                 throw new ObjectNotFoundException($"Record with ID {cartItem.RecordId} not found.");
-            }
+
+
+            var cart = await _dbContext.Carts.FindAsync(cartItem.CartId) ??
+                 throw new ObjectNotFoundException($"Cart with ID {cartItem.CartId} not found.");
+
 
             var cost = record.Price * cartItem.Amount;
             cartItem.SetCost(cost);
