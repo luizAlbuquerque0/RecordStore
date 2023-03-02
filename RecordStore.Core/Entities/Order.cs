@@ -8,7 +8,6 @@
             StoreId = storeId;
             Date = DateTime.Now;
             CartId = cartId;
-            TotalPrice = totalPrice;
         }
 
         public int UserId { get; private set; }
@@ -19,6 +18,11 @@
         public User User { get; private set; }
         public User Store { get; private set; }
         public Cart Cart { get; private set; }
+
+        public void SetTotalCost(decimal totalCost)
+        {
+            TotalPrice = totalCost;
+        }
 
     }
 }
