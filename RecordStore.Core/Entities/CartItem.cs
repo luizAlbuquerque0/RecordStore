@@ -10,7 +10,6 @@
         }
 
         public int CartId { get; private set; }
-        public int StoreId { get; private set; }
         public int RecordId { get; private set; }
         public string Name { get; private set; }
         public int Amount { get; private set; }

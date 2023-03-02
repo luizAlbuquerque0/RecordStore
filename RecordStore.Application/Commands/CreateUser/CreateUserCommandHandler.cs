@@ -20,7 +20,7 @@ namespace RecordStore.Application.Commands.CreateUser
             var passwordHash = _authService.ComputeSha256Hash(request.Password);
 
             var user = new User(request.FullName,request.Email, passwordHash, request.Phone);
-            user.setRole(UserRoles.user);
+            user.SetRole(UserRoles.user);
 
             await _userRepository.CreateUserAsync(user);
 

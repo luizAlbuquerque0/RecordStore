@@ -15,7 +15,7 @@ namespace RecordStore.Application.Queries.GetOrderById
         {
             var order = await _orderRepository.GetOrderByIdAsync(request.OrderId);
             if (order == null) return null;
-            return new OrderViewModel(order.User.FullName, order.Store.FullName, order.TotalPrice, order.Date);
+            return new OrderViewModel(order.User.FullName,  order.TotalPrice, order.Date);
         }
     }
 }

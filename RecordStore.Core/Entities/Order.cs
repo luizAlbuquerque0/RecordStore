@@ -19,7 +19,6 @@ namespace RecordStore.Core.Entities
         public decimal TotalPrice { get; private set; }
         public OrderStatusEnum Status { get; private set; }
         public User User { get; private set; }
-        public User Store { get; private set; }
         public Cart Cart { get; private set; }
         public List<OrderItem> OrderItens { get; private set; }
 
