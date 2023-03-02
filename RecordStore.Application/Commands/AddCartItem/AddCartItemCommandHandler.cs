@@ -14,7 +14,7 @@ namespace RecordStore.Application.Commands.AddCartItem
 
         public async Task<int> Handle(AddCartItemCommand request, CancellationToken cancellationToken)
         {
-            var cartItem = new CartItem(request.CartId, request.RecordId,request.StoreId, request.Amount);
+            var cartItem = new CartItem(request.CartId, request.RecordId, request.Amount);
              await _cartItemRepository.CreateCartItemAsync(cartItem);
 
             return cartItem.Id;
