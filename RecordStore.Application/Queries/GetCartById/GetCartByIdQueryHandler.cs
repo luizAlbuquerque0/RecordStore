@@ -16,6 +16,7 @@ namespace RecordStore.Application.Queries.GetCart
         {
           
             var cart = await _cartRepository.GetCartAsync(request.Id);
+            if (cart == null) return null;
             var cartItens = cart.CartItem.Select(ci => new CartItemViewModel(ci.CartId, ci.RecordId, ci.Amount)).ToList();
             return new CartViewModel(cart.Id, cart.UserId, cartItens, cart.TotalCost);
         }
