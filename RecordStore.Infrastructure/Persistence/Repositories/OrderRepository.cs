@@ -23,7 +23,7 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
 
         public async Task<List<Order>> GetUserOrdersAsync(int id)
         {
-            return await _dbContext.Orders.Where(o => o.UserId == id || o.StoreId == id).ToListAsync();
+            return await _dbContext.Orders.Where(o => o.UserId == id).ToListAsync();
         }
     }
 }

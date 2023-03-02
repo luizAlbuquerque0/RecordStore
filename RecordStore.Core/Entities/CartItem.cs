@@ -2,10 +2,9 @@
 {
     public class CartItem : BaseEntity
     {
-        public CartItem(int cartId,int storeId, int recordId, int amount)
+        public CartItem(int cartId, int recordId, int amount)
         {
             CartId = cartId;
-            StoreId = storeId;
             RecordId = recordId;
             Amount = amount;
         }
@@ -18,6 +17,7 @@
         public decimal Cost { get; private set; }
         public Cart Cart { get; private set; }
         public Record Record { get; private set; }
+        public User Store { get; private set; }
 
         public void SetCost(decimal cost)
         {
@@ -26,6 +26,11 @@
         public void SetName(string name)
         {
             Name = name;
+        }
+
+        public void SetStore(User store)
+        {
+            Store = store;
         }
 
     }

@@ -16,7 +16,7 @@ namespace RecordStore.Application.Commands.CreateOrder
         public async Task<Unit> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
             var cart = await _cartRepository.GetCartAsync(request.CartId);
-            var order = new Order(request.UserId, request.StoreId, request.CartId, request.TotalPrice);
+            var order = new Order(request.UserId, request.CartId, request.TotalPrice);
             order.SetTotalCost(cart.TotalCost);
             await _orderRepository.CreateOrderAsync(order);
             return Unit.Value;

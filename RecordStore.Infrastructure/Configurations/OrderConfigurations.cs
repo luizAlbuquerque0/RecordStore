@@ -18,12 +18,6 @@ namespace RecordStore.Infrastructure.Configurations
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .HasOne(o => o.Store)
-                .WithMany(s => s.StoreOrders)
-                .HasForeignKey(o => o.StoreId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
                 .HasOne(o => o.Cart)
                 .WithOne(c => c.Order)
                 .HasForeignKey<Order>(o => o.CartId);
