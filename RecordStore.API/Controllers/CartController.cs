@@ -48,8 +48,16 @@ namespace RecordStore.API.Controllers
         [HttpPost("item")]
         public async Task<IActionResult> AddCartItem([FromBody] AddCartItemCommand command)
         {
-            var id = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetCartItem), new { id = id }, command);
+            try
+            {
+                var id = await _mediator.Send(command);
+                return CreatedAtAction(nameof(GetCartItem), new { id = id }, command);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("item/{id}")]

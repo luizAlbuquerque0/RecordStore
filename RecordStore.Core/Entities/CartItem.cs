@@ -15,5 +15,10 @@
         public decimal Cost { get; private set; }
         public Cart Cart { get; private set; }
         public Record Record { get; private set; }
+
+        public void SetCost(decimal cost)
+        {
+            Cost = cost;
+        }
     }
 }
