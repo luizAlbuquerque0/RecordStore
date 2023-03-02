@@ -2,14 +2,16 @@
 {
     public class CartItem : BaseEntity
     {
-        public CartItem(int cartId, int recordId, int amount)
+        public CartItem(int cartId,int storeId, int recordId, int amount)
         {
             CartId = cartId;
+            StoreId = storeId;
             RecordId = recordId;
             Amount = amount;
         }
 
         public int CartId { get; private set; }
+        public int StoreId { get; private set; }
         public int RecordId { get; private set; }
         public string Name { get; private set; }
         public int Amount { get; private set; }
