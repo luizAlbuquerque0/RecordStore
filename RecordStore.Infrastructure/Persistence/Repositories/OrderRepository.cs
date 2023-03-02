@@ -18,7 +18,7 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
 
         public async Task<Order> GetOrderByIdAsync(int id)
         {
-            return await _dbContext.Orders.Where(o => o.Id ==id).Include(o => o.User.FullName).Include(o => o.Store.FullName).SingleOrDefaultAsync();
+            return await _dbContext.Orders.Where(o => o.Id ==id).Include(o => o.User).Include(o => o.Store).SingleOrDefaultAsync();
         }
 
         public async Task<List<Order>> GetUserOrdersAsync(int id)
