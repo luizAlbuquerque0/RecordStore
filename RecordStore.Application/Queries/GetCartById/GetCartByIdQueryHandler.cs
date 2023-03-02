@@ -14,8 +14,10 @@ namespace RecordStore.Application.Queries.GetCart
         }
         public async Task<CartViewModel> Handle(GetCartByIdQuery request, CancellationToken cancellationToken)
         {
+          
             var cart = await _cartRepository.GetCartAsync(request.Id);
-            return new CartViewModel(cart.Id, cart.UserId, cart.CartItem);
+            var cartItens = cart.CartItem.Select(ci => new CartItemViewModel(ci.CartId, ci.RecordId, ci.Amount)).ToList();
+            return new CartViewModel(cart.Id, cart.UserId, cartItens, cart.TotalCost);
         }
     }
 }
