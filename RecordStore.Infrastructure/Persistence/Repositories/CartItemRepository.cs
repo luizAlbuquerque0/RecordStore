@@ -25,6 +25,7 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
 
             var cost = record.Price * cartItem.Amount;
             cartItem.SetCost(cost);
+            cartItem.SetName(record.Name);
             cart.UpdateCost(cost);
 
             await _dbContext.CarttItens.AddAsync(cartItem);

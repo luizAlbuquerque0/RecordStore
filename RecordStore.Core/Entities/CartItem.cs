@@ -11,6 +11,7 @@
 
         public int CartId { get; private set; }
         public int RecordId { get; private set; }
+        public string Name { get; private set; }
         public int Amount { get; private set; }
         public decimal Cost { get; private set; }
         public Cart Cart { get; private set; }
@@ -20,5 +21,10 @@
         {
             Cost = cost;
         }
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
     }
 }
