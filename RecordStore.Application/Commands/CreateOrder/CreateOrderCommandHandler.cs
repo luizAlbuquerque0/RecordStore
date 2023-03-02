@@ -17,8 +17,12 @@ namespace RecordStore.Application.Commands.CreateOrder
         {
             var cart = await _cartRepository.GetCartAsync(request.CartId);
             var order = new Order(request.UserId, request.CartId, cart.TotalCost);
-            order.SetCartItens(cart.CartItem);
+
+            var orderItems = cart.CartItem.Select(ci => new OrderItem(order.Id, ci.RecordId, ci.Record.Name, ci.Amount, ci.Cost)).ToList();
+            order.SetCartItens(orderItems);
+
             await _orderRepository.CreateOrderAsync(order);
+
             return Unit.Value;
         }
     }

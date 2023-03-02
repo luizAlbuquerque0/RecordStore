@@ -21,9 +21,9 @@ namespace RecordStore.Core.Entities
         public User User { get; private set; }
         public User Store { get; private set; }
         public Cart Cart { get; private set; }
-        public List<CartItem> OrderItens { get; private set; }
+        public List<OrderItem> OrderItens { get; private set; }
 
-        public void SetCartItens(List<CartItem> cartItens)
+        public void SetCartItens(List<OrderItem> cartItens)
         {
             OrderItens = cartItens;
         }
