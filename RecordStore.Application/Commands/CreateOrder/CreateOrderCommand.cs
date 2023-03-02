@@ -7,7 +7,7 @@ namespace RecordStore.Application.Commands.CreateOrder
     {
         public int UserId { get;  set; }
         public int StoreId { get;  set; }
-        public int CardId { get;  set; }
+        public int CartId { get;  set; }
         public decimal TotalPrice { get;  set; }
     }
 }

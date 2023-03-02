@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RecordStore.Core.Entities;
 using RecordStore.Core.Repositories;
+using RecordStore.Infrastructure.Exceptions;
 
 namespace RecordStore.Infrastructure.Persistence.Repositories
 {
@@ -16,6 +17,16 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
         {
             await _dbContext.Carts.AddAsync(cart);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteCartAsync(int cartId)
+        {
+            var cart = await _dbContext.Carts.SingleOrDefaultAsync(c => c.Id == cartId);
+            if (cart == null) throw new ObjectNotFoundException($"Cart  with ID {cartId} not found.");
+
+            _dbContext.Carts.Remove(cart);
+            await _dbContext.SaveChangesAsync();
+
         }
 
         public async Task<Cart> GetCartAsync(int cartId)

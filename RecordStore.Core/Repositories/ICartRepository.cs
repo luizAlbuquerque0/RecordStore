@@ -6,5 +6,6 @@ namespace RecordStore.Core.Repositories
     {
         Task CreateCartAsync(Cart cart);
         Task<Cart> GetCartAsync(int cartId);
+        Task DeleteCartAsync(int cartId);
     }
 }

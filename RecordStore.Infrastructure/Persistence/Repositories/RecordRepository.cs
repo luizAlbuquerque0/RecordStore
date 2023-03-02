@@ -14,6 +14,7 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
         public async Task AddRecordAsync(Record record)
         {
             await _dbContext.Records.AddRangeAsync(record);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteRecordByIdAsync(int id)
@@ -25,7 +26,8 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
 
         public async Task<Record> GetRecordByIdAsync(int id)
         {
-            return await _dbContext.Records.Include(r=>r.Store.FullName).SingleOrDefaultAsync(r => r.Id == id);
+            return await _dbContext.Records.Where(r => r.Id == id).Include(r => r.Store).SingleOrDefaultAsync();
+
         }
 
         public async Task UpdateRecordStockAsync(int id, int amount)

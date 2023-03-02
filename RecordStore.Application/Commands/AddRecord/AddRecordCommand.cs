@@ -2,7 +2,7 @@
 
 namespace RecordStore.Application.Commands.AddRecord
 {
-    public class AddRecordCommand : IRequest<Unit>
+    public class AddRecordCommand : IRequest<int>
     {
         public string Name { get; set; }
         public string Description { get; set; }
