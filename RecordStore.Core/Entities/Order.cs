@@ -4,12 +4,13 @@ namespace RecordStore.Core.Entities
 {
     public class Order : BaseEntity
     {
-        public Order(int userId, int cartId, decimal totalPrice)
+        public Order(int userId, int cartId, decimal totalCost)
         {
             UserId = userId;
             Date = DateTime.Now;
             CartId = cartId;
             Status = OrderStatusEnum.Created;
+            TotalPrice = totalCost;
         }
 
         public int UserId { get; private set; }
@@ -21,11 +22,6 @@ namespace RecordStore.Core.Entities
         public User Store { get; private set; }
         public Cart Cart { get; private set; }
         public List<CartItem> OrderItens { get; private set; }
-
-        public void SetTotalCost(decimal totalCost)
-        {
-            TotalPrice = totalCost;
-        }
 
         public void SetCartItens(List<CartItem> cartItens)
         {
