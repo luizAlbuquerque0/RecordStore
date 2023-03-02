@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecordStore.Application.Commands.AddCartItem;
 using RecordStore.Application.Commands.CreateCart;
+using RecordStore.Application.Commands.DeleteCart;
 using RecordStore.Application.Commands.GetCartItem;
 using RecordStore.Application.Commands.RemoveCartItem;
 using RecordStore.Application.Queries.GetCart;
@@ -35,6 +36,22 @@ namespace RecordStore.API.Controllers
             var id = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetCart), new { id = id }, command);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCart(int id)
+        {
+            try
+            {
+                var command = new DeleteCartCommand(id);
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("item/{id}")]
