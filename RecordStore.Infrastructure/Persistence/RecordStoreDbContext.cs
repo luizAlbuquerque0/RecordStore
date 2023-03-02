@@ -14,7 +14,9 @@ namespace RecordStore.Infrastructure.Persistence
         public DbSet<Record> Records { get; private set; }
         public DbSet<Order> Orders { get; private set; }
         public DbSet<Cart> Carts { get; private set; }
-        public DbSet<CartItem> CarttItens { get; private set; }
+        public DbSet<CartItem> CartItens { get; private set; }
+        public DbSet<OrderItem> OrderItem { get; private set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

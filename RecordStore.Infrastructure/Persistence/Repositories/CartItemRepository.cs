@@ -29,21 +29,21 @@ namespace RecordStore.Infrastructure.Persistence.Repositories
             cartItem.SetStore(record.Store);
             cart.UpdateCost(cost);
 
-            await _dbContext.CarttItens.AddAsync(cartItem);
+            await _dbContext.CartItens.AddAsync(cartItem);
             await _dbContext.SaveChangesAsync();
         }
 
         public async Task<CartItem> GetCartItemByIdAsync(int id)
         {
-            return await _dbContext.CarttItens.SingleOrDefaultAsync(ci => ci.Id == id);
+            return await _dbContext.CartItens.SingleOrDefaultAsync(ci => ci.Id == id);
         }
 
         public async Task RemoveCartItemAsync(int id)
         {
-            var cartItem = await _dbContext.CarttItens.SingleOrDefaultAsync(ci => ci.Id == id);
+            var cartItem = await _dbContext.CartItens.SingleOrDefaultAsync(ci => ci.Id == id);
             if (cartItem == null) throw new ObjectNotFoundException($"Cart Item with ID {id} not found.");
 
-            _dbContext.CarttItens.Remove(cartItem);
+            _dbContext.CartItens.Remove(cartItem);
             await _dbContext.SaveChangesAsync();
 
             
