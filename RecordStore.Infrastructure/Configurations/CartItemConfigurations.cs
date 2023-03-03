@@ -15,7 +15,7 @@ namespace RecordStore.Infrastructure.Configurations
                 .HasOne(ci => ci.Cart)
                 .WithMany(c => c.CartItem)
                 .HasForeignKey(ci => ci.CartId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
             builder
                 .HasOne(ci => ci.Record)
                 .WithMany(r => r.CartItens)

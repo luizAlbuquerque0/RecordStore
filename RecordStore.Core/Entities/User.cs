@@ -25,7 +25,7 @@ namespace RecordStore.Core.Entities
         public List<Order> StoreOrders { get; private set; }
         public List<Record> Records { get; private set; }
 
-        public void setRole(string role)
+        public void SetRole(string role)
         {
             Role = role;
         }
